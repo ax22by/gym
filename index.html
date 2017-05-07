@@ -95,12 +95,16 @@
         $("#loginerror").html("");
         var $form = $("#loginform");
         var jsonStrJson = getFormData($form);
+        $.support.cors = true;
+        $.mobile.allowCrossDomainPages = true;
+         alert("request:");
         $.ajax({
         type: "POST",
         dataType: "json",
         url: URL+"index.php/login",
         data: {name: jsonStrJson.username, pwd: jsonStrJson.password},
         success: function(res) {
+          alert("response:"+res.status);
           if(res.status==1){
             window.location="member.html?id="+res.data[0]["mid"];
           } else {

@@ -242,12 +242,15 @@ $( function() {
 } );
 
 function getMemberData(){
+    $.support.cors = true;
+    $.mobile.allowCrossDomainPages = true;
 		$.ajax({
 		type: "POST",
 		url: URL+"index.php/getdata",
 		dataType: 'json',
 		data: {id: getParameterByName('id',window.location.href)},
 		success: function(res) {
+      alert(res);
 			if(res.status==1){
 				$("#name").html(res.data["basicDetails"][0].name);
 				$("#photo").attr("src","http://www.endurance.websitesuggestion.com/dist/"+res.data["basicDetails"][0].file);
